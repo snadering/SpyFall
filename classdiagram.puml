@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+class StartMenu {
+- ArrayList<String> usernames
++ ArrayList<String> StartGame(int amountOfPlayers)
+- int ChoosePlayerAmount()
+- ArrayList<String> createPlayerNames(int amountOfPlayers))
+}
+
+class Player {
+- String name;
+- boolean isSpy;
+- String location;
+- String role;
+
++ Player(String name, boolean isSpy, String location, String role)
+
+
+}
+
+class Game {
+- StartMenu startMenu
+}
+
+Game *-- StartMenu
+
+@enduml
