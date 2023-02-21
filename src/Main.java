@@ -1,11 +1,11 @@
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
 
         GameCtrl game = new GameCtrl();
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.assignLocationAndRoles(5);
+        game.run();
 
 
       /*
@@ -17,6 +17,6 @@ public class Main {
         }
 
        */
-        //game.run();
+
     }
 }

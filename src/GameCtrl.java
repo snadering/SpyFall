@@ -1,8 +1,9 @@
 public class GameCtrl {
     StartMenu startMenu = new StartMenu();
+    MainMenu mainMenu = new MainMenu();
 
     public void run(){
-        startMenu.StartGame();
+        mainMenu.assignLocationAndRoles(startMenu.StartGame(), startMenu.getPlayerAmount());
     }
 
 }

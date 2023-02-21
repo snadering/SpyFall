@@ -1,28 +1,29 @@
 import java.util.ArrayList;
 
 public class StartMenu {
-    private ArrayList<String> usernames;
+    private ArrayList<Player> listOfPlayers;
+    private int playerAmount;
 
 
     public StartMenu() {
 
     }
 
-    public ArrayList<String> StartGame() {
+    public ArrayList<Player> StartGame() {
         //To start the game at the bottom of the console.
         TextUI.clearConsole();
 
-        usernames = new ArrayList<>();
+        listOfPlayers = new ArrayList<>();
         createPlayerNames(amountOfPlayers());
 
         //Test printing all the player names.
-        for (String s : usernames){
-            System.out.println(s);
+        for (Player p : listOfPlayers){
+            System.out.println(p);
         }
 
 
 
-     return usernames;
+     return listOfPlayers;
     }
 
     private int amountOfPlayers(){
@@ -41,12 +42,15 @@ public class StartMenu {
         switch (amount) {
             case "3":
                 TextUI.displayMessage("You have successfully chosen 3 players.");
+                playerAmount = 3;
                 return 3;
             case "4":
                 TextUI.displayMessage("You have successfully chosen 4 players.");
+                playerAmount = 4;
                 return 4;
             case "5":
                 TextUI.displayMessage("You have successfully chosen 5 players.");
+                 playerAmount = 5;
                 return 5;
 
         }
@@ -54,26 +58,34 @@ public class StartMenu {
         return -1;
     }
 
-    private ArrayList<String> createPlayerNames(int amountOfPlayers){
+    private ArrayList<Player> createPlayerNames(int amountOfPlayers){
         String currentName = TextUI.getStringInput("Please enter the name of Player 1: ");
-        usernames.add(currentName);
+        Player player1 = new Player(currentName, false, "", "");
+        listOfPlayers.add(player1);
         if (amountOfPlayers > 1){
             currentName = TextUI.getStringInput("Please enter the name of Player 2: ");
-            usernames.add(currentName);
+            Player player2 = new Player(currentName, false, "", "");
+            listOfPlayers.add(player2);
         }
         if (amountOfPlayers > 2) {
             currentName = TextUI.getStringInput("Please enter the name of Player 3: ");
-            usernames.add(currentName);
+            Player player3 = new Player(currentName, false, "", "");
+            listOfPlayers.add(player3);
         }
         if (amountOfPlayers > 3) {
             currentName = TextUI.getStringInput("Please enter the name of Player 4: ");
-            usernames.add(currentName);
+            Player player4 = new Player(currentName, false, "", "");
+            listOfPlayers.add(player4);
         }
         if (amountOfPlayers > 4) {
             currentName = TextUI.getStringInput("Please enter the name of Player 5: ");
-            usernames.add(currentName);
+            Player player5 = new Player(currentName, false, "", "");
+            listOfPlayers.add(player5);
         }
-        return usernames;
+        return listOfPlayers;
     }
 
+    public int getPlayerAmount() {
+        return playerAmount;
+    }
 }

@@ -8,30 +8,38 @@ public class DatabaseIO {
     private static String name = "root";
     private static String password = "K!ro1171";
 
-    /*
-    public DatabaseIO(String url, String name, String password) {
-        this.url = url;
-        this.name = name;
-        this.password = password;
+
+    public static int getNumberOfLocations(){
+        establishConnection();
+        String query = "SELECT COUNT(*) FROM SpyFallDatabase.Locations;";
+        int result = 0;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                result = resultSet.getInt(1);
+            }
+        }catch (SQLException SQLE){
+            System.out.println(SQLE);
+        }
+        return result;
     }
 
-    */
-
-    public static ArrayList<String> getLocation(int locationID) {
+    public static String getLocation(int locationID) {
         establishConnection();
         String query = "SELECT SpyFallDatabase.Locations.Name FROM SpyFallDatabase.Locations WHERE LocationID = " + locationID + ";";
-        ArrayList<String> listOfLocations = new ArrayList<>();
+        String location = "";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                listOfLocations.add(resultSet.getString("Name"));
+                location = resultSet.getString("Name");
             }
         } catch (SQLException SQLE) {
             System.out.println(SQLE);
         }
-        return listOfLocations;
+        return location;
     }
 
     public static ArrayList<String> getRoles(int locationID) {

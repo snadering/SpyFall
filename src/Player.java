@@ -19,11 +19,33 @@ public class Player {
         return isSpy;
     }
 
+    public void setSpy(boolean spy) {
+        isSpy = spy;
+    }
+
     public String getLocation() {
         return location;
     }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getRole() {
         return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", isSpy=" + isSpy +
+                ", location='" + location + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
