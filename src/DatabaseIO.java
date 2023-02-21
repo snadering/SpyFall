@@ -14,26 +14,41 @@ public class DatabaseIO {
         this.password = password;
     }
 
-    public ArrayList<String> getLocations(){
+    public ArrayList<String> getLocations() {
         establishConnection();
         String query = "SELECT SpyFallDatabase.Locations.Name FROM SpyFallDatabase.Locations;";
         ArrayList<String> listOfLocations = new ArrayList<>();
 
-        try{
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 listOfLocations.add(resultSet.getString("Name"));
             }
-        }catch (SQLException SQLE){
+        } catch (SQLException SQLE) {
             System.out.println(SQLE);
         }
-
-
         return listOfLocations;
     }
 
-    private void establishConnection(){
+    public ArrayList<String> getRoles(int locationID) {
+        establishConnection();
+        String query = "SELECT SpyFallDatabase.Roles.Role FROM SpyFallDatabase.Roles WHERE LocationID = " + locationID + ";";
+        ArrayList<String> listOfRoles = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                listOfRoles.add(resultSet.getString("Role"));
+            }
+        } catch (SQLException SQLE) {
+            System.out.println(SQLE);
+        }
+        return listOfRoles;
+    }
+
+    private void establishConnection() {
         try {
             connection = DriverManager.getConnection(url, name, password);
         } catch (SQLException e) {
