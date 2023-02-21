@@ -3,20 +3,23 @@ import java.util.ArrayList;
 
 public class DatabaseIO {
 
-    private Connection connection;
-    private String url;
-    private String name;
-    private String password;
+    private static Connection connection;
+    private static String url = "jdbc:mysql://localhost:3306/SpyFallDatabase?serverTimezone=CET&useSSL=false";
+    private static String name = "root";
+    private static String password = "K!ro1171";
 
+    /*
     public DatabaseIO(String url, String name, String password) {
         this.url = url;
         this.name = name;
         this.password = password;
     }
 
-    public ArrayList<String> getLocations() {
+    */
+
+    public static ArrayList<String> getLocation(int locationID) {
         establishConnection();
-        String query = "SELECT SpyFallDatabase.Locations.Name FROM SpyFallDatabase.Locations;";
+        String query = "SELECT SpyFallDatabase.Locations.Name FROM SpyFallDatabase.Locations WHERE LocationID = " + locationID + ";";
         ArrayList<String> listOfLocations = new ArrayList<>();
 
         try {
@@ -31,7 +34,7 @@ public class DatabaseIO {
         return listOfLocations;
     }
 
-    public ArrayList<String> getRoles(int locationID) {
+    public static ArrayList<String> getRoles(int locationID) {
         establishConnection();
         String query = "SELECT SpyFallDatabase.Roles.Role FROM SpyFallDatabase.Roles WHERE LocationID = " + locationID + ";";
         ArrayList<String> listOfRoles = new ArrayList<>();
@@ -48,7 +51,7 @@ public class DatabaseIO {
         return listOfRoles;
     }
 
-    private void establishConnection() {
+    private static void establishConnection() {
         try {
             connection = DriverManager.getConnection(url, name, password);
         } catch (SQLException e) {
