@@ -6,22 +6,20 @@ import java.util.Random;
 public class MainMenu {
 
     public void assignLocationAndRoles(ArrayList<Player> players, int amountOfPlayers) {
-        System.out.println("ASSIGN LOCATION AND ROLES");
         Random rnd = new Random();
         //Picking a random locationID from amount of locations available in the DB
         int locationID = rnd.nextInt(DatabaseIO.getNumberOfLocations());
         locationID++;
-
+        //Assigning spy to a random player.
         int spy = rnd.nextInt(amountOfPlayers);
         spy++;
         players.get(spy).setSpy(true);
-
-
-        //TODO Set a random person to be spy.
+        players.get(spy).setRole("The Spy");
 
         //Putting the location in a variable, to make sure all players get the same location.
         String location = DatabaseIO.getLocation(locationID);
 
+        //TEST - Start -
         for (Player p : players){
             if (!p.isSpy()){
                 p.setLocation(location);
@@ -31,6 +29,7 @@ public class MainMenu {
         for (Player p : players){
             System.out.println(p);
         }
+        //TEST - End -
     }
 
 }
