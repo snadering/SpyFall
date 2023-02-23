@@ -39,13 +39,20 @@ public class StartMenu {
         //Putting the location in a variable, to make sure all players get the same location.
         String location = DatabaseIO.getLocation(locationID);
 
-        //TEST - Start -
+
         for (Player p : players){
             if (!p.isSpy()){
                 p.setLocation(location);
             }
         }
-
+        ArrayList<String> roles = DatabaseIO.getRoles(locationID);
+        int iterator = 0;
+        for (Player p : players) {
+            if (!p.isSpy()){
+                p.setRole(roles.get(iterator++));
+            }
+        }
+        //TEST - Start -
         for (Player p : players){
             System.out.println(p);
         }
