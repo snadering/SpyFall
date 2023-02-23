@@ -31,7 +31,7 @@ public class StartMenu {
         locationID++;
         //Assigning spy to a random player.
         int spy = rnd.nextInt(amountOfPlayers);
-        spy++;
+        //spy++;
         players.get(spy).setSpy(true);
         players.get(spy).setRole("The Spy");
         players.get(spy).setLocation("???");
