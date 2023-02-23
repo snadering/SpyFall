@@ -3,7 +3,8 @@ public class GameCtrl {
     MainMenu mainMenu = new MainMenu();
 
     public void run(){
-        mainMenu.assignLocationAndRoles(startMenu.StartGame(), startMenu.getPlayerAmount());
+        startMenu.assignLocationAndRoles(startMenu.StartGame(), startMenu.getPlayerAmount());
+        mainMenu.infoMenu(startMenu.getListOfPlayers());
     }
 
 }

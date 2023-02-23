@@ -5,31 +5,14 @@ import java.util.Random;
 
 public class MainMenu {
 
-    public void assignLocationAndRoles(ArrayList<Player> players, int amountOfPlayers) {
-        Random rnd = new Random();
-        //Picking a random locationID from amount of locations available in the DB
-        int locationID = rnd.nextInt(DatabaseIO.getNumberOfLocations());
-        locationID++;
-        //Assigning spy to a random player.
-        int spy = rnd.nextInt(amountOfPlayers);
-        spy++;
-        players.get(spy).setSpy(true);
-        players.get(spy).setRole("The Spy");
-
-        //Putting the location in a variable, to make sure all players get the same location.
-        String location = DatabaseIO.getLocation(locationID);
-
-        //TEST - Start -
-        for (Player p : players){
-            if (!p.isSpy()){
-                p.setLocation(location);
-            }
+    public void infoMenu(ArrayList<Player> players){
+        TextUI.clearConsole();
+        TextUI.displayMessage("Take turns pressing your own number to see your role and location.");
+        for (int i = 0; i < players.size(); i++){
+            TextUI.displayMessage(i+1 + ") " + players.get(i).getName());
         }
 
-        for (Player p : players){
-            System.out.println(p);
-        }
-        //TEST - End -
+
     }
 
 }

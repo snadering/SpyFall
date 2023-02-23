@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class StartMenu {
     private ArrayList<Player> listOfPlayers;
@@ -20,10 +21,35 @@ public class StartMenu {
         for (Player p : listOfPlayers){
             System.out.println(p);
         }
-
-
-
      return listOfPlayers;
+    }
+
+    public void assignLocationAndRoles(ArrayList<Player> players, int amountOfPlayers) {
+        Random rnd = new Random();
+        //Picking a random locationID from amount of locations available in the DB
+        int locationID = rnd.nextInt(DatabaseIO.getNumberOfLocations());
+        locationID++;
+        //Assigning spy to a random player.
+        int spy = rnd.nextInt(amountOfPlayers);
+        spy++;
+        players.get(spy).setSpy(true);
+        players.get(spy).setRole("The Spy");
+        players.get(spy).setLocation("???");
+
+        //Putting the location in a variable, to make sure all players get the same location.
+        String location = DatabaseIO.getLocation(locationID);
+
+        //TEST - Start -
+        for (Player p : players){
+            if (!p.isSpy()){
+                p.setLocation(location);
+            }
+        }
+
+        for (Player p : players){
+            System.out.println(p);
+        }
+        //TEST - End -
     }
 
     private int amountOfPlayers(){
@@ -87,5 +113,9 @@ public class StartMenu {
 
     public int getPlayerAmount() {
         return playerAmount;
+    }
+
+    public ArrayList<Player> getListOfPlayers() {
+        return listOfPlayers;
     }
 }
