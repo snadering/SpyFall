@@ -11,7 +11,10 @@ public class MainMenu {
             TextUI.displayMessage(i+1 + ") " + players.get(i).getName());
         }
 
-        String input = TextUI.getStringInput("Pick the number corresponding to you and press 'ENTER'");
+        String input;
+        do {
+                input = TextUI.getStringInput("Pick the number corresponding to you and press 'ENTER'");
+        } while (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4") && !input.equals("5"));
         TextUI.clearConsole();
         if (input.trim().equals("1")){
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Name: " + players.get(0).getName() + " " + Color.ANSI_RESET);
@@ -26,10 +29,12 @@ public class MainMenu {
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Role: " + players.get(2).getRole() + " " + Color.ANSI_RESET);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Location: " + Color.ANSI_RESET + players.get(2).getLocation());
         } else if (input.trim().equals("4")){
+            if (players.size() < 4) infoMenu(players);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Name: " + players.get(3).getName() + " " + Color.ANSI_RESET);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Role: " + players.get(3).getRole() + " " + Color.ANSI_RESET);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Location: " + Color.ANSI_RESET + players.get(3).getLocation());
         } else if (input.trim().equals("5")){
+            if (players.size() < 5) infoMenu(players);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Name: " + players.get(4).getName() + " " + Color.ANSI_RESET);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Role: " + players.get(4).getRole() + " " + Color.ANSI_RESET);
             TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + " Location: " + Color.ANSI_RESET + players.get(4).getLocation());

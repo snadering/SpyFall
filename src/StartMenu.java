@@ -56,7 +56,7 @@ public class StartMenu {
         do {
             if (!amount.equals("1234567890987654>Z>Z32123456789098765432123456789098765432")){
                 TextUI.clearConsole();
-                TextUI.displayMessage("Sorry '"+ Color.ANSI_RED + amount + Color.ANSI_RESET + "' isn't a valid input");
+                TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + "Sorry '"+ Color.ANSI_RED + amount + Color.ANSI_RESET + Color.ANSI_BLACK_BACKGROUND + "' isn't a valid input" + Color.ANSI_RESET);
             }
         TextUI.displayMessage(Color.ANSI_BLACK_BACKGROUND + "First select how many players will be playing (3-5 Players)." + Color.ANSI_RESET);
          amount = TextUI.getStringInput(Color.ANSI_BLACK_BACKGROUND + "Amount of players: " + Color.ANSI_RESET);
