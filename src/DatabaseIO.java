@@ -6,7 +6,9 @@ public class DatabaseIO {
     private static Connection connection;
     private static String url = "jdbc:mysql://localhost:3306/SpyFallDatabase?serverTimezone=CET&useSSL=false";
     private static String name = "root";
-    private static String password = "K!ro1171";
+
+    //TODO WRITE IN SQL PASSWORD TO CONNECT TO DATABASE
+    private static String password = "PASSWORD";
 
 
     public static int getNumberOfLocations(){
